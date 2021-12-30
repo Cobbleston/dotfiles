@@ -1,0 +1,25 @@
+[test]
+full_text=test
+command=echo "· ${full_text~~}"
+color=#FFFF00
+
+[caps-lock]
+command=xset -q | grep Caps | awk '{ print $4 }'
+label=CAP: 
+interval=repeat
+signal=10
+
+[MEM]
+command=free -h | awk '/Mem:/ { printf("%5s/%s \n", $3, $2) }'
+label=RAM: 
+interval=1
+color=#FEC925
+
+[battery]
+command=./battery.py
+label=BAT: 
+interval=10
+
+[TIME_DATE]
+command=date +" %a, %d %b - %H:%M:%S"
+interval=1
