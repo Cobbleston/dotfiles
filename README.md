@@ -1,7 +1,7 @@
 # Dotfiles, by Konova8
 
 ## .config
-Eseguire `python ./setup.py` nella cartella della repo
+Eseguire `./setup.py` nella cartella della repo
 
 ## Estensione per YT
 Aprire le impostazioni e copiare il file `.txt`
