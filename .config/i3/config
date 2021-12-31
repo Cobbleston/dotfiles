@@ -46,8 +46,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# System Tray Icon for PulseAudio
-exec --no-startup-id pasystray
+# System Tray Icon for PulseAudio, da qualche parte ne fa già partire una
+#exec --no-startup-id pasystray
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -236,4 +236,5 @@ exec --no-startup-id ~/.config/startup.sh
 # Apre le app più usate all'inizio
 exec --no-startup-id spotify
 exec --no-startup-id telegram-desktop
-exec --no-startup-id firefox web.whatsapp.com mail.google.com calendar.google.com
+exec --no-startup-id firefox
+
