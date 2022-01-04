@@ -15,6 +15,12 @@ label=RAM:
 interval=1
 color=#FEC925
 
+[CPU]
+command=sensors | grep "Package id 0" | awk '{ printf("%s\n", $4) }'
+label=CPU: 
+interval=1
+color=#FEC925
+
 [battery]
 command=./battery.py
 label=BAT: 
