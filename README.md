@@ -1,16 +1,13 @@
-# Dotfiles for laptop
+# Dotfiles
 
 These are my dotfiles for the configuration I use on my laptop
 
 For the same result you have to install endeavouros with all the base and useful package, with i3 but without the configuration that endeavouros team made at i3 
 
-## packages
+## Packages
 `pacman -S code discord alacritty ueberzug`
 
 `yay -S code-marketplace spotify lightdm-webkit2-theme-arch`
-
-## .config
-Run `./setup.py` in the folder of the repo, it will copy all the files that need to go in the `.config` folder
 
 ## Visual Studio Code
 Install these extensions:
@@ -40,6 +37,15 @@ Modify `/etc/lightdm/lightdm.conf` changing greeter session with `greeter-sessio
 
 Modify `/etc/lightdm/lightdm-webkit2-greeter.conf` changing the theme with `webkit_theme = arch`
 
+## Laptop
+### .config
+Run `./setup.py laptop` in the folder of the repo, it will copy all the files that need to go in the `.config` folder
+
+## Desktop
+### .config
+Run `./setup.py laptop` in the folder of the repo, it will copy all the files that need to go in the `.config` folder
+
+---
 
 ## TODO
 - [x] LightDM theme
