@@ -3,6 +3,9 @@ full_text=test
 command=echo "· ${full_text~~}"
 color=#FFFF00
 
+[suspend]
+command=systemctl suspend
+
 [caps-lock]
 command=xset -q | grep Caps | awk '{ print $4 }'
 label=CAP: 
@@ -16,7 +19,8 @@ interval=1
 color=#FEC925
 
 [CPU]
-command=sensors | grep "Package id 0" | awk '{ printf("%s\n", $4) }'
+command=sensors | grep Tctl | awk '{awk print($2)}'
+#command=sensors | grep "Package id 0" | awk '{ printf("%s\n", $4) }'
 label=CPU: 
 interval=1
 color=#FEC925
