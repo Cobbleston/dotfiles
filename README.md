@@ -1,11 +1,11 @@
 # Dotfiles
 
-These are my dotfiles for the configuration I use on my laptop
+These are my dotfiles for the configuration I use on my laptop and my desktop computer
 
 For the same result you have to install endeavouros with all the base and useful package, with i3 but without the configuration that endeavouros team made at i3 
 
 ## Packages
-`pacman -S code discord alacritty ueberzug`
+`pacman -S code discord alacritty ueberzug ranger`
 
 `yay -S code-marketplace spotify lightdm-webkit2-theme-arch`
 
@@ -26,7 +26,7 @@ Change this settings in `about:config`
 Open settings from the browser and import the backup file
 
 ## Polkit
-Install `pokit-gnome`, it may be already installed
+Install `polkit-gnome`, it may be already installed
 
 Copy `/etc/X11/xinit` to `~/.xinitrc` using `cp /etc/X11/xinit ~/.xinitrc`
 
@@ -39,11 +39,11 @@ Modify `/etc/lightdm/lightdm-webkit2-greeter.conf` changing the theme with `webk
 
 ## Laptop
 ### .config
-Run `./setup.py laptop` in the folder of the repo, it will copy all the files that need to go in the `.config` folder
+Run `./setup.py --laptop` in the folder of the repo, it will copy all the files that need to go in the `.config` folder
 
 ## Desktop
 ### .config
-Run `./setup.py laptop` in the folder of the repo, it will copy all the files that need to go in the `.config` folder
+Run `./setup.py --desktop` in the folder of the repo, it will copy all the files that need to go in the `.config` folder
 
 ---
 
