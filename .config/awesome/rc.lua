@@ -211,7 +211,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
+            -- awful.widget.watch('bash -c "free -h | awk \'/^Mem/ {print $3}\'"' ,30), -- custom ram one line widget
             wibox.widget.systray(),
+            awful.widget.watch('bash -c "acpi | awk \'{print $3 $4}\'"' ,30), -- custom battery one line widget
             mytextclock,
             s.mylayoutbox,
         },
