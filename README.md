@@ -5,9 +5,9 @@ These are my dotfiles for the configuration I use on my laptop and my desktop co
 For the same result you have to install endeavouros with all the base and useful package, with i3 but without the configuration that endeavouros team made at i3 
 
 ## Packages
-`pacman -S code discord alacritty ueberzug ranger`
+`pacman -S code discord alacritty ueberzug ranger awesome`
 
-`yay -S code-marketplace spotify lightdm-webkit2-theme-arch`
+`yay -S code-marketplace spotify`
 
 ## Visual Studio Code
 Install these extensions:
