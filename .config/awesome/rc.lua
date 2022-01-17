@@ -331,10 +331,13 @@ globalkeys = gears.table.join(
     -- CUSTOM SHORTCUTS
     -- Launch Rofi
     awful.key({ modkey }, "p", function() awful.util.spawn("rofi -modi drun,run -show drun") end,
-              {description = "launch rofi", group = "launcher"}),
+        {description = "launch rofi", group = "launcher"}),
+    -- Launch Rofi
+    awful.key({ modkey }, "b", function() awful.util.spawn("firefox") end,
+        {description = "launch firefox", group = "custom"}),
     -- Screenshot
     awful.key({ }, "Print", function() awful.util.spawn("flameshot gui") end,
-              {description = "make a screenshot", group = "custom"})
+        {description = "make a screenshot", group = "custom"})
 )
 
 clientkeys = gears.table.join(
