@@ -75,6 +75,10 @@ _open_files_for_editing() {
     echo "$FUNCNAME: package 'xdg-utils' or 'exo' is required." >&2
 }
 
+# GLOBAL VARIABLES
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 #------------------------------------------------------------
 
 ## Aliases for the functions above.
