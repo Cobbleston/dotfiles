@@ -58,10 +58,12 @@ myStartupHook = do
     -- spawn "killall conky"   -- kill current conky on each restart
     -- spawn "killall trayer"  -- kill current trayer on each restart
 
-    spawnOnce "nm-applet &"
-    spawnOnce "flameshot &"
-    spawnOnce "pasystray &"
+    spawnOnce "nm-applet &" -- Network system tray
+    spawnOnce "flameshot &" -- Screenshot utility
+    spawnOnce "pasystray &" -- Pavucontrol system tray
+    spawnOnce "setxkbmap -layout us -variant intl"  -- Set US international layout
     spawnOnce "feh --randomize --bg-fill ~/git-repos/dotfiles/wallpapers/*"  -- feh set random wallpaper
+    -- Start program after boot
     spawnOnce "telegram-desktop"
     spawnOnce "spotify"
     spawnOnce myBrowser
@@ -76,7 +78,13 @@ myConfig = def
     , layoutHook = myLayout  -- Use custom layouts
     }
   `additionalKeysP`
-    [ ("<Print>", spawn "flameshot gui") -- Take a screenshot
+    [ ("<XF86AudioLowerVolume>", spawn "amixer -D pipewire sset Master 5%-") -- Laptop Keyboard dedicted keys
+    , ("<XF86AudioRaiseVolume>", spawn "amixer -D pipewire sset Master 5%+") -- Laptop Keyboard dedicted keys
+    , ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle") -- Laptop Keyboard dedicted keys
+    , ("<XF86AudioMicMute>", spawn "pactl set-source-mute @DEFAULT_SOURCE@ toggle") -- Laptop Keyboard dedicted keys
+    , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10") -- Laptop Keyboard dedicted keys
+    , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10") -- Laptop Keyboard dedicted keys
+    , ("<Print>", spawn "flameshot gui") -- Take a screenshot
     , ("M-S-w", spawn "feh --randomize --bg-fill git-repos/dotfiles/wallpapers/*") -- Change Wallpaper
     , ("M-s", goToSelected def) -- GridSelect Change Window
     , ("M-d", spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"") -- Start DMENU
