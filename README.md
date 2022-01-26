@@ -7,7 +7,7 @@ For the same result you have to install endeavouros with all the base and useful
 ## Packages
 `pacman -S code discord alacritty ueberzug ranger xmonad xmonad-contrib lxappearance`
 
-`yay -S code-marketplace spotify`
+`yay -S code-marketplace spotify catppuccin-gtk-theme`
 
 ## Visual Studio Code
 Install these extensions:
