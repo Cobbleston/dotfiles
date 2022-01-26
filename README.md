@@ -5,7 +5,7 @@ These are my dotfiles for the configuration I use on my laptop and my desktop co
 For the same result you have to install endeavouros with all the base and useful package, with i3 but without the configuration that endeavouros team made at i3 
 
 ## Packages
-`pacman -S code discord alacritty ueberzug ranger awesome`
+`pacman -S code discord alacritty ueberzug ranger xmonad xmonad-contrib lxappearance`
 
 `yay -S code-marketplace spotify`
 
