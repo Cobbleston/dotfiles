@@ -91,5 +91,5 @@ myConfig = def
     , ("M-<Return>", spawn myTerminal)
     , ("M-S-m", windows W.swapMaster) -- Swap the focused window and the master window
     , ("M-S-s", spawnSelected def ["alacritty","firefox","vim","spotify","telegram-desktop"]) -- GridSelect Start App
+    , ("M-S-b", spawn "notify-send \"Batteria\" \"$(acpi)\"") -- Notification for battery
     ]
-
