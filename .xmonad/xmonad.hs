@@ -15,17 +15,18 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Magnifier
 import XMonad.Layout.Spacing -- for "smart gaps"
-
+import XMonad.Layout.ResizableTile -- for resizing in default layout
 -- Actions
 import XMonad.Actions.GridSelect
 
-myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
+myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol ||| tall
   where
     threeCol = magnifiercz' 1.3 $ ThreeColMid nmaster delta ratio
     tiled    = Tall nmaster delta ratio
     nmaster  = 1      -- Default number of windows in the master pane
     ratio    = 1/2    -- Default proportion of screen occupied by master pane
-    delta    = 3/100  -- Percent of screen to increment by when resizing panes
+    delta    = 5/100  -- Percent of screen to increment by when resizing panes
+    tall     = ResizableTall 2 (1/10) 1 []
 
 -- Variables
 --myFont :: String
@@ -92,4 +93,6 @@ myConfig = def
     , ("M-S-m", windows W.swapMaster) -- Swap the focused window and the master window
     , ("M-S-s", spawnSelected def ["alacritty","firefox","vim","spotify","telegram-desktop"]) -- GridSelect Start App
     , ("M-S-b", spawn "notify-send \"Batteria\" \"$(acpi)\"") -- Notification for battery
+    , ("M-C-j", sendMessage MirrorExpand)
+    , ("M-C-k", sendMessage MirrorShrink)
     ]
