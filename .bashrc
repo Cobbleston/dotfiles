@@ -92,6 +92,9 @@ export EDITOR="$VISUAL"
 
 eval "$(thefuck --alias)"
 
+alias sdn="shutdown now"
+alias update="sudo pacman -Syu && yay -Sua"
+
 afetch
 
 PS1='$(if [[ $? == 0 ]]; then echo "\[\e[32m\]:)"; else echo "\[\e[31m\]:("; fi) \w\n\[\e[0m\][\u@\H]$ '
