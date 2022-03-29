@@ -2,35 +2,52 @@ import XMonad
 
 import qualified XMonad.StackSet as W
 
--- Utils
-import XMonad.Util.EZConfig -- additionalKeysP for shortcuts
-import XMonad.Util.Ungrab -- Use for shortcuts
-import XMonad.Util.SpawnOnce -- Use for startup commands
-
 -- Hooks
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.DynamicLog    -- For xmonabar
+import XMonad.Hooks.StatusBar     -- For xmonabar
+import XMonad.Hooks.StatusBar.PP  -- For xmonabar
+
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
+
+import XMonad.Hooks.EwmhDesktops  -- Make xmonad EWMH compliant
+
+-- Utils
+import XMonad.Util.EZConfig             -- additionalKeysP for shortcuts
+import XMonad.Util.Ungrab               -- Use for shortcuts
+import XMonad.Util.SpawnOnce            -- Use for startup commands
+import XMonad.Util.ClickableWorkspaces  -- For clickable workspaces
+import XMonad.Util.Loggers              -- Personalization Xmobar
 
 -- Layouts
-import XMonad.Layout.ThreeColumns
-import XMonad.Layout.Magnifier
-import XMonad.Layout.Spacing -- for "smart gaps"
-import XMonad.Layout.ResizableTile -- for resizing in default layout
+import XMonad.Layout.ThreeColumns     -- Three Columns Layout
+import XMonad.Layout.Magnifier        -- Magnifier for Layout
+import XMonad.Layout.Spacing          -- for "smart gaps"
+import XMonad.Layout.ResizableTile    -- for resizing in default layout
+
 -- Actions
 import XMonad.Actions.GridSelect
 
-myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol ||| tall
+
+main :: IO ()
+main = xmonad
+     . ewmhFullscreen
+     . ewmh
+     . withEasySB (statusBarProp "xmobar ~/.xmonad/xmobar/xmobar.config" (pure myXmobarPP)) defToggleStrutsKey
+     $ myConfig
+
+
+myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
   where
     threeCol = magnifiercz' 1.3 $ ThreeColMid nmaster delta ratio
     tiled    = Tall nmaster delta ratio
     nmaster  = 1      -- Default number of windows in the master pane
     ratio    = 1/2    -- Default proportion of screen occupied by master pane
     delta    = 5/100  -- Percent of screen to increment by when resizing panes
-    tall     = ResizableTall 2 (1/10) 1 []
 
 -- Variables
---myFont :: String
---myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
+-- myFont :: String
+-- myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
 
 myModMask :: KeyMask
 myModMask = mod4Mask        -- Sets modkey to super/windows key
@@ -58,18 +75,42 @@ myStartupHook :: X ()
 myStartupHook = do
     -- spawn "killall conky"   -- kill current conky on each restart
     -- spawn "killall trayer"  -- kill current trayer on each restart
-
-    spawnOnce "nm-applet &" -- Network system tray
-    spawnOnce "flameshot &" -- Screenshot utility
-    spawnOnce "pasystray &" -- Pavucontrol system tray
-    spawnOnce "setxkbmap -layout us -variant intl"  -- Set US international layout
-    spawnOnce "feh --randomize --bg-fill ~/git-repos/dotfiles/wallpapers/*"  -- feh set random wallpaper
+    
     -- Start program after boot
     spawnOnce "telegram-desktop"
     spawnOnce "spotify"
     spawnOnce myBrowser
 
-main = xmonad . ewmh =<< xmobar myConfig
+myXmobarPP :: PP
+myXmobarPP = def
+    { ppSep             = magenta " • "
+    , ppTitleSanitize   = xmobarStrip
+    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2
+    , ppHidden          = white . wrap " " ""
+    , ppHiddenNoWindows = lowWhite . wrap " " ""
+    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
+    , ppOrder           = myOrder
+    , ppExtras          = [logTitles formatFocused formatUnfocused]
+    }
+  where
+    myOrder [ws, l, _, wins] = [ws, l, wins]
+    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
+    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
+
+
+    -- | Windows should have *some* title, which should not not exceed a
+    -- sane length.
+    ppWindow :: String -> String
+    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+
+    blue, lowWhite, magenta, red, white, yellow :: String -> String
+    magenta  = xmobarColor "#ff79c6" ""
+    blue     = xmobarColor "#bd93f9" ""
+    white    = xmobarColor "#f8f8f2" ""
+    yellow   = xmobarColor "#f1fa8c" ""
+    red      = xmobarColor "#ff5555" ""
+    lowWhite = xmobarColor "#bbbbbb" ""
+
 
 myConfig = def
     { modMask = myModMask
