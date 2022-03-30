@@ -74,12 +74,14 @@ myBorderWidth = 2           -- Sets border width for windows
 myStartupHook :: X ()
 myStartupHook = do
     -- spawn "killall conky"   -- kill current conky on each restart
-    -- spawn "killall trayer"  -- kill current trayer on each restart
+    spawn "killall trayer"  -- kill current trayer on each restart
     
     -- Start program after boot
-    spawnOnce "telegram-desktop"
     spawnOnce "spotify"
+    spawnOnce "telegram-desktop"
     spawnOnce myBrowser
+
+    spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 20")
 
 myXmobarPP :: PP
 myXmobarPP = def
@@ -98,8 +100,7 @@ myXmobarPP = def
     formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
 
 
-    -- | Windows should have *some* title, which should not not exceed a
-    -- sane length.
+    -- | Windows should have *some* title, which should not not exceed a sane length.
     ppWindow :: String -> String
     ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
 

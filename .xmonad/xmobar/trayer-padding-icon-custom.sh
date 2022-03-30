@@ -8,6 +8,8 @@
 # `Run Com "/where/ever/trayer-padding-icon.sh" [] "trayerpad" 10`
 # and use `%trayerpad%` in your template.
 
+# Variable to reduce padding
+n=$((6))
 
 # Function to create a transparent Wx1 px XPM icon
 create_xpm_icon () {
@@ -34,6 +36,12 @@ EOF
 
 # Width of the trayer window
 width=$(xprop -name panel | grep 'program specified minimum size' | cut -d ' ' -f 5)
+
+# Reduce the width do close the left gap
+intWidth=$((width))
+width=$(($intWidth-$n))
+
+#echo $width
 
 # Icon file name
 iconfile="/tmp/trayer-padding-${width}px.xpm"
