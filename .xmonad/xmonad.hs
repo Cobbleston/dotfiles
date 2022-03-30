@@ -25,9 +25,6 @@ import XMonad.Layout.Magnifier        -- Magnifier for Layout
 import XMonad.Layout.Spacing          -- for "smart gaps"
 import XMonad.Layout.ResizableTile    -- for resizing in default layout
 
--- Actions
-import XMonad.Actions.GridSelect
-
 
 main :: IO ()
 main = xmonad
@@ -82,6 +79,7 @@ myStartupHook = do
     spawnOnce myBrowser
 
     spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 20")
+    spawnOnce "feh --randomize --bg-fill --no-fehbg git-repos/dotfiles/wallpapers/*"  -- feh set random wallpaper
 
 myXmobarPP :: PP
 myXmobarPP = def
@@ -128,12 +126,10 @@ myConfig = def
     , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10") -- Laptop Keyboard dedicted keys
     , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10") -- Laptop Keyboard dedicted keys
     , ("<Print>", spawn "flameshot gui") -- Take a screenshot
-    , ("M-S-w", spawn "feh --randomize --bg-fill git-repos/dotfiles/wallpapers/*") -- Change Wallpaper
-    , ("M-s", goToSelected def) -- GridSelect Change Window
+    , ("M-S-w", spawn "feh --randomize --bg-fill --no-fehbg git-repos/dotfiles/wallpapers/*") -- Change Wallpaper
     , ("M-d", spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"") -- Start DMENU
     , ("M-<Return>", spawn myTerminal)
     , ("M-S-m", windows W.swapMaster) -- Swap the focused window and the master window
-    , ("M-S-s", spawnSelected def ["alacritty","firefox","vim","spotify","telegram-desktop"]) -- GridSelect Start App
     , ("M-S-b", spawn "notify-send \"Batteria\" \"$(acpi)\"") -- Notification for battery
     , ("M-C-j", sendMessage MirrorExpand)
     , ("M-C-k", sendMessage MirrorShrink)

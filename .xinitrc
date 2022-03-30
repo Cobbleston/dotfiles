@@ -62,5 +62,3 @@ pasystray &
 #awesome
 exec xmonad
 
-feh --randomize --bg-fill git-repos/dotfiles/wallpapers/
-
