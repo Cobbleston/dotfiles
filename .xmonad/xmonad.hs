@@ -78,7 +78,7 @@ myStartupHook = do
     spawnOnce "telegram-desktop"
     spawnOnce myBrowser
 
-    spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 20")
+    spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 20"
     spawnOnce "feh --randomize --bg-fill --no-fehbg git-repos/dotfiles/wallpapers/*"  -- feh set random wallpaper
 
 myXmobarPP :: PP
