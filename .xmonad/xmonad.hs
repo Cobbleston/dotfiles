@@ -18,12 +18,18 @@ import XMonad.Util.Ungrab               -- Use for shortcuts
 import XMonad.Util.SpawnOnce            -- Use for startup commands
 import XMonad.Util.ClickableWorkspaces  -- For clickable workspaces
 import XMonad.Util.Loggers              -- Personalization Xmobar
+import XMonad.Util.Cursor               -- for set the left point cursor as default
 
 -- Layouts
 import XMonad.Layout.ThreeColumns     -- Three Columns Layout
 import XMonad.Layout.Magnifier        -- Magnifier for Layout
-import XMonad.Layout.Spacing          -- for "smart gaps"
+import XMonad.Layout.Spacing          -- for gaps
 import XMonad.Layout.ResizableTile    -- for resizing in default layout
+import XMonad.Layout.NoBorders        -- for no border on fullscreen windows
+
+
+--------------------------------------------------------------
+-- Main
 
 
 main :: IO ()
@@ -34,6 +40,10 @@ main = xmonad
      $ myConfig
 
 
+--------------------------------------------------------------
+-- Layout
+
+
 myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
   where
     threeCol = magnifiercz' 1.3 $ ThreeColMid nmaster delta ratio
@@ -42,7 +52,11 @@ myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
     ratio    = 1/2    -- Default proportion of screen occupied by master pane
     delta    = 5/100  -- Percent of screen to increment by when resizing panes
 
+
+--------------------------------------------------------------
 -- Variables
+
+
 -- myFont :: String
 -- myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
 
@@ -59,20 +73,27 @@ myEditor :: String
 myEditor = myTerminal ++ " -e vim "    -- Sets vim as editor
 
 myBorderWidth :: Dimension
-myBorderWidth = 2           -- Sets border width for windows
+myBorderWidth = 1           -- Sets border width for windows
 
--- myNormColor :: String       -- Border color of normal windows
--- myNormColor   = colorBack   -- This variable is imported from Colors.THEME
---
--- myFocusColor :: String      -- Border color of focused windows
--- myFocusColor  = color15     -- This variable is imported from Colors.THEME
+myNormColor :: String       -- Border color of normal windows
+myNormColor   = "#2f3d44"
 
+myFocusColor :: String      -- Border color of focused windows
+myFocusColor  = "#1ABC9C"
+
+
+--------------------------------------------------------------
 -- Startup
+
+
 myStartupHook :: X ()
 myStartupHook = do
     -- spawn "killall conky"   -- kill current conky on each restart
     spawn "killall trayer"  -- kill current trayer on each restart
     
+    -- Set right mouse pointer
+    setDefaultCursor xC_left_ptr
+
     -- Start program after boot
     spawnOnce "spotify"
     spawnOnce "telegram-desktop"
@@ -80,6 +101,11 @@ myStartupHook = do
 
     spawn "sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34 --height 20"
     spawnOnce "feh --randomize --bg-fill --no-fehbg git-repos/dotfiles/wallpapers/*"  -- feh set random wallpaper
+
+
+--------------------------------------------------------------
+-- Xmobar configuration
+
 
 myXmobarPP :: PP
 myXmobarPP = def
@@ -111,12 +137,19 @@ myXmobarPP = def
     lowWhite = xmobarColor "#bbbbbb" ""
 
 
+--------------------------------------------------------------
+-- Xmonad config
+
+
 myConfig = def
     { modMask = myModMask
     , terminal = myTerminal
     , startupHook = myStartupHook
     , borderWidth = myBorderWidth
-    , layoutHook = myLayout  -- Use custom layouts
+    -- This is the color of the borders of the windows themselves.
+    , normalBorderColor  = myNormColor
+    , focusedBorderColor = myFocusColor
+    , layoutHook = smartBorders $ myLayout  -- Use custom layouts
     }
   `additionalKeysP`
     [ ("<XF86AudioLowerVolume>", spawn "amixer -D pipewire sset Master 5%-") -- Laptop Keyboard dedicted keys
