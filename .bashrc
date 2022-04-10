@@ -92,6 +92,12 @@ export EDITOR="$VISUAL"
 
 eval "$(thefuck --alias)"
 
+
+### Aliases ###
+
+alias ls='exa'
+alias ll='exa -laF'
+alias grep='grep --colour=auto'
 alias sdn="shutdown now"
 alias update="sudo pacman -Syu && yay -Sua"
 
