@@ -43,7 +43,7 @@ fi
 flameshot &
 nm-applet &
 pasystray &
+slstatus &
 
-#awesome
-exec xmonad
+exec dwm
 
