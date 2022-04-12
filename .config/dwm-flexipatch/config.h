@@ -850,18 +850,33 @@ static Key on_empty_keys[] = {
 };
 #endif // ON_EMPTY_KEYS_PATCH
 
+#if LAPTOPKEYS
+static const char* lowerAudio[] = { "amixer", "-D", "pipewire", "sset", "Master", "5%-", NULL };
+static const char* increAudio[] = { "amixer", "-D", "pipewire", "sset", "Master", "5%+", NULL };
+static const char* muteAudio[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char* muteMicAudio[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
+static const char* brightnessUp[] = { "xbacklight", "-inc", "10", NULL };
+static const char* brightnessDown[] = { "xbacklight", "-dec", "10", NULL };
+#endif //LAPTOPKEYS
+
+#if PRINTKEY
+static const char* makeScreenshot[] = { "flameshot", "gui", NULL };
+#endif //PRINTKEY
+
+
+
 static Key keys[] = {
 	/* modifier                     key            function                argument */
 	#if LAPTOPKEYS
-	{ 0,							XF86XK_AudioLowerVolume,	spawn,		{.v = "amixer -D pipewire sset Master 5%-" } },				// Laptop Keyboard dedicted keys
-    { 0,							XF86XK_AudioRaiseVolume,	spawn,		{.v = "amixer -D pipewire sset Master 5%+" } },				// Laptop Keyboard dedicted keys
-    { 0,							XF86XK_AudioMute,			spawn,		{.v = "pactl set-sink-mute @DEFAULT_SINK@ toggle" } },		// Laptop Keyboard dedicted keys
-    { 0,							XF86XK_AudioMicMute,		spawn,		{.v = "pactl set-source-mute @DEFAULT_SOURCE@ toggle" } },	// Laptop Keyboard dedicted keys
-    { 0,							XF86XK_MonBrightnessUp,		spawn,		{.v = "xbacklight -inc 10" } },								// Laptop Keyboard dedicted keys
-    { 0,							XF86XK_MonBrightnessDown,	spawn,		{.v = "xbacklight -dec 10" } },								// Laptop Keyboard dedicted keys
+	{ 0,							XF86XK_AudioLowerVolume,	spawn,		{.v = lowerAudio } },			// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_AudioRaiseVolume,	spawn,		{.v = increAudio } },			// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_AudioMute,			spawn,		{.v = muteAudio } },			// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_AudioMicMute,		spawn,		{.v = muteMicAudio } },		// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_MonBrightnessUp,		spawn,		{.v = brightnessUp } },		// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_MonBrightnessDown,	spawn,		{.v = brightnessDown } },		// Laptop Keyboard dedicted keys
 	#endif //LAPTOPKEYS
 	#if PRINTKEY
-    { 0,							0x0000ff61,						spawn,		{.v = "flameshot gui" } },									// Take a screenshot
+    { 0,							0x0000ff61,						spawn,		{.v = makeScreenshot } },	// Take a screenshot
 	#endif //PRINTKEY
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
