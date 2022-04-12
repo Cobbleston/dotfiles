@@ -1,5 +1,14 @@
 /* See LICENSE file for copyright and license details. */
 
+// Library for using laptop keys
+#include <X11/XF86keysym.h>
+
+#define USEALACRITTYTERMINAL 1
+
+#define PRINTKEY 1
+
+#define LAPTOPKEYS 1 // Bisogna aggiungere anche "#include <X11/XF86keysym.h>" in drw.c
+
 /* appearance */
 #if ROUNDED_CORNERS_PATCH
 static const unsigned int borderpx       = 0;   /* border pixel of windows */
@@ -811,7 +820,11 @@ static const char *dmenucmd[] = {
 	#endif // BAR_DMENUMATCHTOP_PATCH
 	NULL
 };
-static const char *termcmd[]  = { "st", NULL };
+#if USEALACRITTYTERMINAL
+static const char *termcmd[] = { "alacritty", NULL }; 
+#else
+static const char *termcmd[] = { "sl", NULL };
+#endif // USEALACRITTYTERMINAL
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
@@ -839,6 +852,17 @@ static Key on_empty_keys[] = {
 
 static Key keys[] = {
 	/* modifier                     key            function                argument */
+	#if LAPTOPKEYS
+	{ 0,							XF86XK_AudioLowerVolume,	spawn,		{.v = "amixer -D pipewire sset Master 5%-" } },				// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_AudioRaiseVolume,	spawn,		{.v = "amixer -D pipewire sset Master 5%+" } },				// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_AudioMute,			spawn,		{.v = "pactl set-sink-mute @DEFAULT_SINK@ toggle" } },		// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_AudioMicMute,		spawn,		{.v = "pactl set-source-mute @DEFAULT_SOURCE@ toggle" } },	// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_MonBrightnessUp,		spawn,		{.v = "xbacklight -inc 10" } },								// Laptop Keyboard dedicted keys
+    { 0,							XF86XK_MonBrightnessDown,	spawn,		{.v = "xbacklight -dec 10" } },								// Laptop Keyboard dedicted keys
+	#endif //LAPTOPKEYS
+	#if PRINTKEY
+    { 0,							0x0000ff61,						spawn,		{.v = "flameshot gui" } },									// Take a screenshot
+	#endif //PRINTKEY
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
 	#endif // KEYMODES_PATCH
