@@ -43,6 +43,8 @@ flameshot &
 nm-applet &
 pasystray &
 
+slstatus &
+
 /home/simonec/autostart.sh
 
 exec dwm
