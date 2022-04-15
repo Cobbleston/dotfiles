@@ -38,12 +38,12 @@ fi
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 
-
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 flameshot &
 nm-applet &
 pasystray &
-slstatus &
+
+/home/simonec/autostart.sh
 
 exec dwm
 
