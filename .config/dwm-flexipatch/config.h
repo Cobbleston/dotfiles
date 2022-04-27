@@ -142,46 +142,45 @@ static const char dmenufont[]            = "monospace:size=10";
 
 static char c000000[]                    = "#000000"; // placeholder value
 
-static char normfgcolor[]                = "#bbbbbb";
-static char normbgcolor[]                = "#2e3440";
-static char normbordercolor[]            = "#3b465a";
-static char normfloatcolor[]             = "#3b465a";
+static char normfgcolor[]                = "#bdc4cc";	// colore testo barra
+static char normbgcolor[]                = "#2f343f";	// sfondo slstatus, dmenu
+static char normbordercolor[]            = "#2f343f";	// bordo finestra attiva senza focus
+static char normfloatcolor[]             = "#2f343f";	// bordo finestra floating senza focus
 
-static char selfgcolor[]                 = "#33383e";
-//static char selbgcolor[]                 = "#33383e";
-static char selbgcolor[]                 = "#ff0000";
-static char selbordercolor[]             = "#68647b";
-static char selfloatcolor[]              = "#68647b";
+static char selfgcolor[]                 = "#d3dae3";	// colore testo dmenu
+static char selbgcolor[]                 = "#50586b";	// sfondo dmenu selezionato
+static char selbordercolor[]             = "#5294e2";	// bordo finestra attiva con focus
+static char selfloatcolor[]              = "#5294e2";	// bordo finestra floating con focus
 
-static char titlenormfgcolor[]           = "#bbbbbb";
-static char titlenormbgcolor[]           = "#2e3440";
-static char titlenormbordercolor[]       = "#32373d";
-static char titlenormfloatcolor[]        = "#32373d";
+static char titlenormfgcolor[]           = "#bdc4cc";
+static char titlenormbgcolor[]           = "#2f343f";
+static char titlenormbordercolor[]       = "#2f343f";
+static char titlenormfloatcolor[]        = "#2f343f";
 
-static char titleselfgcolor[]            = "#eeeeee";
-static char titleselbgcolor[]            = "#5e81ac";
-static char titleselbordercolor[]        = "#5e81ac";
-static char titleselfloatcolor[]         = "#5e81ac";
+static char titleselfgcolor[]            = "#d3dae3";	// Colore testo titolo finestra
+static char titleselbgcolor[]            = "#50586b";	// Colore sfondo titolo finestra
+static char titleselbordercolor[]        = "#5294e2";
+static char titleselfloatcolor[]         = "#5294e2";
 
-static char tagsnormfgcolor[]            = "#eeeeee";
-static char tagsnormbgcolor[]            = "#2e3440";
+static char tagsnormfgcolor[]            = "#bdc4cc";	// Colore testo workspace non selezionato
+static char tagsnormbgcolor[]            = "#2f343f";	// Sfondo workspace non selezionato
 static char tagsnormbordercolor[]        = "#ebcb8b";
 static char tagsnormfloatcolor[]         = "#ebcb8b";
 
-static char tagsselfgcolor[]             = "#2e3340";
-static char tagsselbgcolor[]             = "#a3be8c";
-static char tagsselbordercolor[]         = "#3f4a5e";
-static char tagsselfloatcolor[]          = "#3f4a5e";
+static char tagsselfgcolor[]             = "#d3dae3";	// Colore testo workspace selezionato
+static char tagsselbgcolor[]             = "#50586b";	// Sfondo workspace selezionato
+static char tagsselbordercolor[]         = "#5294e2";	
+static char tagsselfloatcolor[]          = "#5294e2";
 
 static char hidnormfgcolor[]             = "#005577";
 static char hidselfgcolor[]              = "#227799";
 static char hidnormbgcolor[]             = "#222222";
 static char hidselbgcolor[]              = "#222222";
 
-static char urgfgcolor[]                 = "#bbbbbb";
-static char urgbgcolor[]                 = "#bf616a";
-static char urgbordercolor[]             = "#ff0000";
-static char urgfloatcolor[]              = "#bf616a";
+static char urgfgcolor[]                 = "#ffffff";
+static char urgbgcolor[]                 = "#ff0000";
+static char urgbordercolor[]             = "#ffaa00";
+static char urgfloatcolor[]              = "#ffaa00";
 
 #if BAR_FLEXWINTITLE_PATCH
 static char normTTBbgcolor[]             = "#330000";
@@ -877,7 +876,7 @@ static Key keys[] = {
     { 0,							XF86XK_MonBrightnessDown,	spawn,		{.v = brightnessDown } },		// Laptop Keyboard dedicted keys
 	#endif //LAPTOPKEYS
 	#if PRINTKEY
-    { 0,							0x0000ff61,						spawn,		{.v = makeScreenshot } },	// Take a screenshot
+    { 0,							0x0000ff61,					spawn,		{.v = makeScreenshot } },	// Take a screenshot
 	#endif //PRINTKEY
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
