@@ -65,7 +65,7 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ entropy, "%s", NULL },
+	{ run_command, "%s", "pacman -Qu | wc -l" },
 	{ separator, "%s", "  |  " },
 	{ battery_perc, "BAT: %s%%", "BAT0" },
 	{ separator, "%s", "  |  " },
