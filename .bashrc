@@ -76,7 +76,7 @@ _open_files_for_editing() {
 }
 
 # GLOBAL VARIABLES
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 #------------------------------------------------------------
