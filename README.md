@@ -5,12 +5,14 @@ These are my dotfiles for the configuration I use on my laptop and my desktop co
 For the same result you have to install endeavouros with all the base and useful package, with i3 but without the configuration that endeavouros team made at i3 
 
 ## Packages
-`pacman -S firefox thunderbird code discord alacritty ueberzug ranger lxappearance neovim lazygit`
+`git firefox thunderbird code discord alacritty ueberzug ranger lxappearance neovim lazygit`
 
+## Arch User Repository
 `yay -S code-marketplace spotify`
 
 Package name | Description
 :-: | :-:
+`git` | Git
 `firefox` | Firefox Browser
 `thunderbird` | Mail Client
 `code` | Visual Studio Code
