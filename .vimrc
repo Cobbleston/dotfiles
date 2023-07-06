@@ -9,6 +9,6 @@ set number relativenumber	" Display line numbers
 set clipboard=unnamedplus	" Copy/paste between vim and other programs.
 set tabstop=4			" Set tab as \t but with 4 spaces
 syntax enable			" enable syntax
-let g:rehash256 = 1		" BOH
+let g:rehash256 = 1		" To avoid Normal text being black
 
 
