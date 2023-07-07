@@ -5,7 +5,7 @@ These are my dotfiles for the configuration I use on my laptop and my desktop co
 For the same result you have to install endeavouros with all the base and useful package, with i3 but without the configuration that endeavouros team made at i3 
 
 ## Packages
-`wget git firefox thunderbird code discord alacritty ueberzug ranger lxappearance neovim lazygit`
+`wget git firefox thunderbird code discord alacritty ueberzug highlight ranger lxappearance neovim lazygit`
 
 ## Arch User Repository
 `yay -S code-marketplace spotify`
@@ -20,6 +20,7 @@ Package name | Description
 `discord` | Discord Client
 `alacritty` | Terminal Emulator
 `ueberzug` | Ranger engine for image preview
+`highlight` | For highlighting text with ranger
 `ranger` | Terminal File Manager
 `lxappearance` | GUI for GTK themes
 `neovim` | NeoVim
