@@ -1,14 +1,14 @@
 # Dotfiles
-
 These are my dotfiles for the configuration I use on my laptop and my desktop computer
 
-For the same result you have to install endeavouros with all the base and useful package, with i3 but without the configuration that endeavouros team made at i3 
+For the same result you have to install endeavouros with [INSERT PACKAGE], with gnome but without the configuration that endeavouros team made with it
 
 ## Packages
-`wget git firefox thunderbird code discord alacritty ueberzug highlight ranger lxappearance neovim lazygit`
+`pacman -S wget git firefox thunderbird code discord alacritty highlight ranger
+neovim lazygit sway swaybg mpv grim swaylock swayidle go npm telegram-desktop
+pamixer xdg-desktop-portal-wlr xdg-desktop-portal-gtk flameshot jq btop`
 
-## Arch User Repository
-`yay -S code-marketplace spotify`
+`yay -S code-marketplace spotify rofi-lbonn-wayland`
 
 Package name | Description
 :-: | :-:
@@ -18,28 +18,68 @@ Package name | Description
 `thunderbird` | Mail Client
 `code` | Visual Studio Code
 `discord` | Discord Client
-`alacritty` | Terminal Emulator
-`ueberzug` | Ranger engine for image preview
+`foot` | Terminal Emulator
 `highlight` | For highlighting text with ranger
 `ranger` | Terminal File Manager
-`lxappearance` | GUI for GTK themes
 `neovim` | NeoVim
 `lazygit` | TUI for git repos
 `code-marketplace` | Enable the marketplace of VSCode
 `spotify` | Spotify Client
+`sway` | Windows Manager
+`swaybg` | Background setter for sway
+`mpv` | CLI video player
+`grim` | Screenshot utility
+`swaylock` | Lock for sway
+`swayidle` | Idle manager
+`go` |
+`npm` |
+`telegram-desktop` | Telegram client
+`pamixer` | For getting volume level for WM status bar
+`xdg-desktop-portal-wlr` | Screen Sharing in Wayland
+`xdg-desktop-portal-gtk` | Screen Sharing in Wayland (fallback)
+`flameshot` | Screenshot Software
+`jq` | JSON formatter for CLI
+`btop` | Improved version of `top`
 
-## Firefox
+## Cofigurations
+### GTK
+`gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'`
+
+### Git
+Add ssh keys for logging
+
+> Copy `.gitconfig` for personal settings
+
+`cp ~/gitrepos/dotfiles/.gitconfig ~/`
+
+### Firefox
 Change this settings in `about:config`
 
 `toolkit.tabbox.switchByScrolling = true`
 
-## Enhancer for YT
+Enable sync and use all extensions
+
+### Enhancer for YT
 Open settings from the browser and import the backup file
 
-## Polkit
-Install `polkit-gnome`, it may be already installed
+### Config files
+> Copy all file from `dotfiles/.config` to `~/.config/` without overwrite anything
 
-Copy `/etc/X11/xinit` to `~/.xinitrc` using `cp /etc/X11/xinit ~/.xinitrc`
+`cp -n ~/gitrepos/dotfiles/.config/* ~/.config/`
 
-Add `/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &` at the end of ~/.xinitrc
+### Bash
+> Copy `.bashrc` and `.bash_profile` inside the home directory
 
+`cp ~/gitrepos/dotfiles/.bashrc ~/`
+
+`cp ~/gitrepos/dotfiles/.bash_profile ~/`
+
+### Split Ergo Keyboard
+TODO instruction for ibus
+
+### Thunderbird
+TODO gruvbox theme
+
+TODO setup email
+
+TODO setup calendar (?)
